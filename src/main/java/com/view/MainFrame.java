@@ -1,6 +1,7 @@
 package com.view;
 
 import com.controllers.GameController;
+import com.model.Food;
 import com.model.Snake;
 
 import javax.swing.*;
@@ -15,6 +16,8 @@ public class MainFrame extends JFrame {
 
     private static final String MENU_PANEL = "Panel with menus";
     private static final String GAME_FIELD = "Game field";
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
 
     public MainFrame() {
         gameField = new GameField();
@@ -25,7 +28,7 @@ public class MainFrame extends JFrame {
         getContentPane().add(mainMenu, MENU_PANEL);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(WIDTH, HEIGHT);
     }
 
     public void init() {
@@ -45,5 +48,9 @@ public class MainFrame extends JFrame {
 
     public void setSnake(Snake snake) {
         gameField.setSnake(snake);
+    }
+
+    public void setFood(Food food) {
+        gameField.setFood(food);
     }
 }

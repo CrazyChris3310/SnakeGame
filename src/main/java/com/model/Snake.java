@@ -12,12 +12,11 @@ public class Snake {
 
     public Snake(Color color) {
         snake = new ArrayList<>();
+        this.color = color;
+        this.direction = Direction.RIGHT;
         addElement(100, 100);
         addElement(100, 120);
         addElement(100, 140);
-
-        this.color = color;
-        this.direction = Direction.RIGHT;
     }
 
     public void setDirection(Direction direction) {

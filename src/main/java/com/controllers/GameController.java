@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.exec.Main;
 import com.model.Direction;
+import com.model.Food;
 import com.model.Snake;
 import com.view.MainFrame;
 import sun.security.x509.CertAttrSet;
@@ -16,11 +17,10 @@ public class GameController {
 
     private Snake snake;
     private MainFrame mainFrame;
+    private Food food;
 
     public GameController(MainFrame mainFrame) {
-        snake = new Snake(Color.MAGENTA);
         this.mainFrame = mainFrame;
-        this.mainFrame.setSnake(snake);
 
         this.mainFrame.addKeyListener(new KeyAdapter() {
             @Override
@@ -37,7 +37,11 @@ public class GameController {
     }
 
     public void startGame() {
-        Timer timer = new Timer(500, this::step);
+        snake = new Snake(Color.GREEN);
+        food = new Food();
+        mainFrame.setSnake(snake);
+        mainFrame.setFood(food);
+        Timer timer = new Timer(200, this::step);
         timer.start();
     }
 
