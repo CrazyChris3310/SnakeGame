@@ -11,6 +11,7 @@ public class MainMenu extends JPanel {
     private JButton startBtn;
     private JButton settingsBtn;
     private JButton exitBtn;
+    private JLabel scoreLbl;
 
     public MainMenu(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -22,7 +23,7 @@ public class MainMenu extends JPanel {
         menuLabel.setFont(new Font("arial", Font.BOLD, 26));
         menuLabel.setForeground(Color.RED);
 
-        JLabel scoreLbl = new JLabel("Score: 0", SwingConstants.CENTER);
+        scoreLbl = new JLabel("Score: 0", SwingConstants.CENTER);
         scoreLbl.setFont(new Font("segoe print", Font.BOLD, 14));
         scoreLbl.setForeground(Color.BLUE);
 
@@ -43,6 +44,10 @@ public class MainMenu extends JPanel {
         startBtn.addActionListener((event) -> {
             mainFrame.startGame();
         });
+    }
+
+    public void setScore(int score) {
+        scoreLbl.setText("Score: " + score);
     }
 
 

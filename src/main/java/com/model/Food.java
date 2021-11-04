@@ -1,7 +1,6 @@
 package com.model;
 
-import com.view.MainFrame;
-
+import com.utils.Functions;
 import java.awt.*;
 
 public class Food {
@@ -12,12 +11,13 @@ public class Food {
     private int y;
 
     public Food() {
-        x = (int)(Math.random() * (MainFrame.WIDTH));
-        y = (int)(Math.random() * (MainFrame.HEIGHT));
-        x -= x % SnakeElement.SIZE;
-        y -= y % SnakeElement.SIZE;
-        System.out.println(x);
-        System.out.println(y);
+        newCords();
+    }
+
+    public void newCords() {
+        int[] cords = Functions.randomCoordinate();
+        x = cords[0];
+        y = cords[1];
     }
 
     public void paint(Graphics g) {

@@ -1,6 +1,7 @@
 package com.model;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class SnakeElement {
 
@@ -8,6 +9,7 @@ public class SnakeElement {
     private Color color;
     private int x;
     private int y;
+    private Direction direction;
 
     public SnakeElement(int x, int y) {
         this.x = x;
@@ -17,6 +19,14 @@ public class SnakeElement {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     public void paintElement(Graphics g) {
@@ -65,5 +75,16 @@ public class SnakeElement {
         x -= SIZE;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SnakeElement element = (SnakeElement) o;
+        return x == element.x && y == element.y && Objects.equals(color, element.color);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, x, y);
+    }
 }

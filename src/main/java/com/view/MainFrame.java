@@ -33,10 +33,18 @@ public class MainFrame extends JFrame {
         setResizable(false);
     }
 
+    public void showMenu() {
+        cardLayout.show(this.getContentPane(), MENU_PANEL);
+    }
+
     public void init() {
         cardLayout.show(this.getContentPane(), MENU_PANEL);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public void setScore(int score) {
+        mainMenu.setScore(score);
     }
 
     public void setController(GameController controller) {
