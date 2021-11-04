@@ -41,11 +41,16 @@ public class GameController {
         food = new Food();
         mainFrame.setSnake(snake);
         mainFrame.setFood(food);
-        Timer timer = new Timer(200, this::step);
+        Timer timer = new Timer(100, this::step);
         timer.start();
     }
 
     private void step(ActionEvent event) {
+        if (snake.intersects(food.getCords())) {
+            food = new Food();
+            mainFrame.setFood(food);
+            snake.grow();
+        }
         snake.updateCords();
         mainFrame.repaint();
     }

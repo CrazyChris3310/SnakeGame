@@ -25,4 +25,8 @@ public class Food {
         g.fillRect(x+BORDER, y+BORDER, SIZE, SIZE);
     }
 
+    public int[] getCords() {
+        return new int[] {x, y};
+    }
+
 }

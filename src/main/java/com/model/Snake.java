@@ -2,6 +2,7 @@ package com.model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Snake {
@@ -29,6 +30,21 @@ public class Snake {
         snake.add(element);
     }
 
+    public void grow() {
+        int x = snake.get(snake.size() - 1).getX();
+        int y = snake.get(snake.size() - 1).getY();
+
+        switch (direction) {
+            case UP: y -= 20; break;
+            case DOWN: y += 20; break;
+            case LEFT: x -= 20; break;
+            case RIGHT: x += 20; break;
+        }
+
+        addElement(x, y);
+        // FIXME: associate direction with an array of numbers to make addition easier
+    }
+
     public void paintSnake(Graphics g) {
         for (SnakeElement element : snake) {
             element.paintElement(g);
@@ -45,5 +61,13 @@ public class Snake {
             case RIGHT: snake.get(0).incX(); break;
             case LEFT: snake.get(0).decX(); break;
         }
+    }
+
+    public boolean intersects(int[] cords) {
+        for (SnakeElement element : snake) {
+            if (Arrays.equals(element.getCords(), cords))
+                return true;
+        }
+        return false;
     }
  }
