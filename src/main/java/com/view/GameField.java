@@ -20,7 +20,4 @@ public class GameField extends JPanel {
         snake.paintSnake(g);
     }
 
-
-
-
 }

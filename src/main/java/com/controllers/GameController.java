@@ -21,10 +21,8 @@ public class GameController {
         snake = new Snake(Color.MAGENTA);
         this.mainFrame = mainFrame;
         this.mainFrame.setSnake(snake);
-    }
 
-    public void start() {
-        mainFrame.addKeyListener(new KeyAdapter() {
+        this.mainFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
@@ -35,6 +33,10 @@ public class GameController {
                 }
             }
         });
+
+    }
+
+    public void startGame() {
         Timer timer = new Timer(500, this::step);
         timer.start();
     }

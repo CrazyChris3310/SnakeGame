@@ -10,7 +10,8 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             MainFrame mainFrame = new MainFrame();
             GameController controller = new GameController(mainFrame);
-            controller.start();
+            mainFrame.setController(controller);
+            mainFrame.init();
         });
     }
 }
