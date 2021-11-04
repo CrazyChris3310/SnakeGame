@@ -12,6 +12,10 @@ public class GameField extends JPanel {
     private Snake snake;
     private Food food;
 
+    public GameField() {
+        setSize(MainFrame.WIDTH, MainFrame.HEIGHT);
+    }
+
     public void setSnake(Snake snake) {
         this.snake = snake;
     }
@@ -23,8 +27,8 @@ public class GameField extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        snake.paintSnake(g);
         food.paint(g);
+        snake.paintSnake(g);
     }
 
 }

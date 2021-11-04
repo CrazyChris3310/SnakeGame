@@ -28,11 +28,14 @@ public class MainFrame extends JFrame {
         getContentPane().add(mainMenu, MENU_PANEL);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(WIDTH, HEIGHT);
+//        setSize(WIDTH, HEIGHT);
+        pack();
+        setResizable(false);
     }
 
     public void init() {
         cardLayout.show(this.getContentPane(), MENU_PANEL);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

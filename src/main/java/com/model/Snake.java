@@ -1,5 +1,7 @@
 package com.model;
 
+import com.view.MainFrame;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,12 +57,23 @@ public class Snake {
         for (int i = snake.size() - 1; i > 0; --i) {
             snake.get(i).changeCords(snake.get(i - 1).getCords());
         }
+        SnakeElement head = snake.get(0);
         switch (direction) {
-            case UP: snake.get(0).decY(); break;
-            case DOWN: snake.get(0).incY(); break;
-            case RIGHT: snake.get(0).incX(); break;
-            case LEFT: snake.get(0).decX(); break;
+            case UP: head.decY(); break;
+            case DOWN: head.incY(); break;
+            case RIGHT: head.incX(); break;
+            case LEFT: head.decX(); break;
         }
+
+        if (head.getX() < 0)
+            head.setX(MainFrame.WIDTH - SnakeElement.SIZE);
+        else if (head.getX() >= MainFrame.WIDTH)
+            head.setX(0);
+        else if (head.getY() < 0)
+            head.setY(MainFrame.HEIGHT - SnakeElement.SIZE);
+        else if (head.getY() >= MainFrame.HEIGHT)
+            head.setY(0);
+
     }
 
     public boolean intersects(int[] cords) {

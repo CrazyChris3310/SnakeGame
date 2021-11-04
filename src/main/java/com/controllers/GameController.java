@@ -1,11 +1,9 @@
 package com.controllers;
 
-import com.exec.Main;
 import com.model.Direction;
 import com.model.Food;
 import com.model.Snake;
 import com.view.MainFrame;
-import sun.security.x509.CertAttrSet;
 
 import javax.swing.*;
 import java.awt.*;
