@@ -17,6 +17,7 @@ public class GameController {
     private MainFrame mainFrame;
     private Food food;
     private Timer timer;
+    private Direction futureDirection;
 
     public GameController(MainFrame mainFrame) {
         this.mainFrame = mainFrame;

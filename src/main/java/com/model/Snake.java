@@ -35,7 +35,8 @@ public class Snake {
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (this.direction.isOpposite(direction))
+            this.direction = direction;
     }
 
     public void addElement(int x, int y) {
@@ -46,20 +47,15 @@ public class Snake {
     }
 
     public void grow() {
+        // appending new element to the end considering direction
         int x = snake.get(snake.size() - 1).getX();
         int y = snake.get(snake.size() - 1).getY();
 
-        switch (direction) {
-            case UP: y += 20; break;
-            case DOWN: y -= 20; break;
-            case LEFT: x += 20; break;
-            case RIGHT: x -= 20; break;
-        }
-
-        // FIXME: new element is appended in the direction of head but must in the direction of previous element
+        Direction dir = snake.get(snake.size() - 1).getDirection();
+        x -= dir.getHorizontalKey() * SnakeElement.SIZE;
+        y -= dir.getVerticalKey() * SnakeElement.SIZE;
 
         addElement(x, y);
-        // FIXME: associate direction with an array of numbers to make addition easier
     }
 
     public void paintSnake(Graphics g) {
@@ -70,17 +66,12 @@ public class Snake {
 
     public void updateCords() {
         for (int i = snake.size() - 1; i > 0; --i) {
-            snake.get(i).changeCords(snake.get(i - 1).getCords());
             snake.get(i).setDirection(snake.get(i-1).getDirection());
+            snake.get(i).changeCords(snake.get(i - 1).getCords());
         }
         SnakeElement head = snake.get(0);
         head.setDirection(direction);
-        switch (direction) {
-            case UP: head.decY(); break;
-            case DOWN: head.incY(); break;
-            case RIGHT: head.incX(); break;
-            case LEFT: head.decX(); break;
-        }
+        head.move();
 
         if (head.getX() < 0)
             head.setX(MainFrame.WIDTH - SnakeElement.SIZE);

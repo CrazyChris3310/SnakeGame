@@ -59,20 +59,9 @@ public class SnakeElement {
         this.y = y;
     }
 
-    public void incY() {
-        y += SIZE;
-    }
-
-    public void incX() {
-        x += SIZE;
-    }
-
-    public void decY() {
-        y -= SIZE;
-    }
-
-    public void decX() {
-        x -= SIZE;
+    public void move() {
+        x += direction.getHorizontalKey() * SIZE;
+        y += direction.getVerticalKey() * SIZE;
     }
 
     @Override
