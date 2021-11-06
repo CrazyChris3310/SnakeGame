@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 public class GameController {
 
@@ -17,20 +18,29 @@ public class GameController {
     private MainFrame mainFrame;
     private Food food;
     private Timer timer;
-    private Direction futureDirection;
+    private java.util.Queue<Direction> directionQueue;
 
     public GameController(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
+        directionQueue = new LinkedList<>();
 
         this.mainFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+//                switch (e.getKeyCode()) {
+//                    case KeyEvent.VK_UP: snake.setDirection(Direction.UP); break;
+//                    case KeyEvent.VK_DOWN: snake.setDirection(Direction.DOWN); break;
+//                    case KeyEvent.VK_RIGHT: snake.setDirection(Direction.RIGHT); break;
+//                    case KeyEvent.VK_LEFT: snake.setDirection(Direction.LEFT); break;
+//                }
+
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP: snake.setDirection(Direction.UP); break;
-                    case KeyEvent.VK_DOWN: snake.setDirection(Direction.DOWN); break;
-                    case KeyEvent.VK_RIGHT: snake.setDirection(Direction.RIGHT); break;
-                    case KeyEvent.VK_LEFT: snake.setDirection(Direction.LEFT); break;
+                    case KeyEvent.VK_UP: directionQueue.add(Direction.UP); break;
+                    case KeyEvent.VK_DOWN: directionQueue.add(Direction.DOWN); break;
+                    case KeyEvent.VK_RIGHT: directionQueue.add(Direction.RIGHT); break;
+                    case KeyEvent.VK_LEFT: directionQueue.add(Direction.LEFT); break;
                 }
+
             }
         });
 
@@ -55,6 +65,7 @@ public class GameController {
             mainFrame.showMenu();
             mainFrame.setScore(snake.getSize());
         }
+        snake.setDirection(directionQueue.poll());
         snake.updateCords();
         mainFrame.repaint();
     }
